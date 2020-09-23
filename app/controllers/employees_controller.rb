@@ -3,8 +3,8 @@ class EmployeesController < ApplicationController
 
   def index
     group_by = params[:group_by]
-    @employees = Employee.includes(:department).sales if group_by == 'dept'
-    @employees = Employee.includes(:department).all if group_by == 'all'
+    # @employees = Employee.includes(:department).sales if group_by == 'dept'
+    @employees = Employee.includes(:department).all
     render json: @employees
   end
 
