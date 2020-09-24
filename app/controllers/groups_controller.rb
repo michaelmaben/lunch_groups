@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
       @groups[group_number] = employees.pop(pop_size)
       group_number+=1
     end
-    render json: @groups
+    @groups
   end
 
 end

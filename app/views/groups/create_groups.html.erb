@@ -1,0 +1,23 @@
+<div class='container-fluid'>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th>Badge ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @groups.each_with_index do |gp, i| %>
+          <th> Group <%=i%></th>
+          <% gp.each do |em| %>
+            <tr>
+                <td><%= em.badge_id %> </td>
+                <td><%= em.first_name %> </td>
+                <td><%= em.last_name %> </td>
+            </tr>
+          <%end%>
+        <% end %>
+    </tbody>
+  </table>
+</div>

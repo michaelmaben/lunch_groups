@@ -5,12 +5,11 @@ class EmployeesController < ApplicationController
     group_by = params[:group_by]
     # @employees = Employee.includes(:department).sales if group_by == 'dept'
     @employees = Employee.includes(:department).all
-    render json: @employees
   end
 
   def show
     @employee = Employee.find(params[:id])
-    render json: @employee
+    # render json: @employee
   end
 
   def create
