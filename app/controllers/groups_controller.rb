@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
   include GroupsHelper
+
   def create_groups
     employees = Employee.random.to_a
-    group_size = return_group_size(employees)
+    group_size = calculate_group_size(employees)
     @groups = []
     group_number = 0
     while employees.size > 0
