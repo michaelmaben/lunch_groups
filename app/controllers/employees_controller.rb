@@ -21,7 +21,7 @@ class EmployeesController < ApplicationController
     if @employee.save
       redirect_to employees_path
     else
-      flash[:notice] = "Failed creating Employee"
+      flash[:notice] = @employee.errors.full_messages.to_sentence
       render :new
     end
   end
