@@ -1,20 +1,29 @@
 class EmployeesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :departments
 
   def index
     group_by = params[:group_by]
-    # @employees = Employee.includes(:department).sales if group_by == 'dept'
     @employees = Employee.includes(:department).all
   end
 
   def show
     @employee = Employee.find(params[:id])
-    # render json: @employee
   end
+
+  def new
+    @employee = Employee.new
+  end
+
 
   def create
     @employee = Employee.create(employee_attributes)
-    @employee.save
+    if @employee.save
+      redirect_to employees_path
+    else
+      flash[:notice] = "Failed creating Employee"
+      render :new
+    end
   end
 
   def update
@@ -29,5 +38,9 @@ class EmployeesController < ApplicationController
   private
     def employee_attributes
       params.require(:employee).permit(:badge_id, :first_name, :last_name, :department_id)
+    end
+
+    def departments
+      @departments = Department.all
     end
 end
