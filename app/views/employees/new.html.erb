@@ -1,16 +1,30 @@
 
 <% content_for :title do %>Employee<% end %>
 <h3>Create Employee</h3>
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+  <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
 <div class="form">
-<%= form_with model: @employee, class: "employee_form", local: true do |f| %>
-  <%= f.text_field :badge_id %>
-  <%= f.text_field :first_name %>
-  <%= f.text_field :last_name %>
-  <% options = options_from_collection_for_select(@departments, 'id', 'name') %>
-  <%= f.select :department_id,  options %>
-  <%= f.submit "Create" %>
+<%= form_with model: @employee, local: true do |f| %>
+  <div>
+    <%= label_tag(:badge_id, "Badge Id:") %>
+    <%= f.text_field :badge_id %>
+  </div>
+  <div>
+    <%= label_tag(:first_name, "First Name:") %>
+    <%= f.text_field :first_name %>
+  </div>
+  <div>
+    <%= label_tag(:last_name, "Last Name:") %>
+    <%= f.text_field :last_name %>
+  </div>
+  <div>
+    <%= label_tag(:department_id, "Department:") %>
+    <% options = options_from_collection_for_select(@departments, 'id', 'name') %>
+    <%= f.select :department_id,  options %>
+  </div>
+  <div>
+    <%= f.submit "Create" %>
+  </div>
 <% end %>
 </div>

@@ -22,7 +22,7 @@ class EmployeesController < ApplicationController
       redirect_to employees_path
     else
       flash[:notice] = @employee.errors.full_messages.to_sentence
-      render :new
+      redirect_to new_employee_path
     end
   end
 
